@@ -1,2 +1,7 @@
-# moneyboxproject
-i made this project for a charity society but this project could be used for people who work to be salesman.
+# ihhkumbara
+
+A new Flutter project.
+
+## Getting Started
+
+FlutterFlow projects are built to run on the Flutter _stable_ release.
