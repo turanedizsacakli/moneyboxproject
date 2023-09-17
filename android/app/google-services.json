@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1076204945889",
+    "project_id": "moneybox-587ed",
+    "storage_bucket": "moneybox-587ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1076204945889:android:3836e46b4af9b9edf012a0",
+        "android_client_info": {
+          "package_name": "com.mycompany.ihhkumbara"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOqGmEh18e2rPIdDg_y7C29WNY02vLDJA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
