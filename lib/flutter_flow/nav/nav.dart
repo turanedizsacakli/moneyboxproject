@@ -78,7 +78,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'PeopleList',
           path: '/peopleList',
-          builder: (context, params) => PeopleListWidget(),
+          asyncParams: {
+            'district': getDoc(['Charitables'], CharitablesRecord.fromSnapshot),
+          },
+          builder: (context, params) => PeopleListWidget(
+            district: params.getParam('district', ParamType.Document),
+          ),
         ),
         FFRoute(
           name: 'FutureRegisterPage',

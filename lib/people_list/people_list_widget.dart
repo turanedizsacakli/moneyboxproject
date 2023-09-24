@@ -13,7 +13,12 @@ import 'people_list_model.dart';
 export 'people_list_model.dart';
 
 class PeopleListWidget extends StatefulWidget {
-  const PeopleListWidget({Key? key}) : super(key: key);
+  const PeopleListWidget({
+    Key? key,
+    required this.district,
+  }) : super(key: key);
+
+  final CharitablesRecord? district;
 
   @override
   _PeopleListWidgetState createState() => _PeopleListWidgetState();
@@ -39,6 +44,8 @@ class _PeopleListWidgetState extends State<PeopleListWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
@@ -85,8 +92,21 @@ class _PeopleListWidgetState extends State<PeopleListWidget> {
                   controller: _model.districtsDropDownValueController ??=
                       FormFieldController<String>(null),
                   options: ['SEYHAN', 'YÜREĞİR', 'ÇUKUROVA', 'SARIÇAM'],
-                  onChanged: (val) =>
-                      setState(() => _model.districtsDropDownValue = val),
+                  onChanged: (val) async {
+                    setState(() => _model.districtsDropDownValue = val);
+                    context.pushNamed(
+                      'PeopleList',
+                      queryParameters: {
+                        'district': serializeParam(
+                          widget.district,
+                          ParamType.Document,
+                        ),
+                      }.withoutNulls,
+                      extra: <String, dynamic>{
+                        'district': widget.district,
+                      },
+                    );
+                  },
                   width: 166.0,
                   height: 50.0,
                   textStyle: FlutterFlowTheme.of(context).bodyMedium,
@@ -176,7 +196,7 @@ class _PeopleListWidgetState extends State<PeopleListWidget> {
                               }
                               int textCount = snapshot.data!;
                               return Text(
-                                '0',
+                                textCount.toString(),
                                 style: FlutterFlowTheme.of(context).bodyMedium,
                               );
                             },
@@ -219,103 +239,143 @@ class _PeopleListWidgetState extends State<PeopleListWidget> {
                             return Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 8.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed(
-                                    'Person',
-                                    queryParameters: {
-                                      'personKnowledge': serializeParam(
-                                        listViewCharitablesRecord,
-                                        ParamType.Document,
-                                      ),
-                                    }.withoutNulls,
-                                    extra: <String, dynamic>{
-                                      'personKnowledge':
-                                          listViewCharitablesRecord,
-                                    },
-                                  );
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 3.0,
-                                        color: Color(0x411D2429),
-                                        offset: Offset(0.0, 1.0),
-                                      )
-                                    ],
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 8.0, 8.0, 8.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          listViewCharitablesRecord.shopName,
-                                          style: FlutterFlowTheme.of(context)
-                                              .headlineSmall
-                                              .override(
-                                                fontFamily: 'Outfit',
-                                                color: Color(0xFF0F1113),
-                                                fontSize: 20.0,
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 4.0, 8.0, 0.0),
-                                          child: AutoSizeText(
-                                            listViewCharitablesRecord
-                                                .nameSurname
-                                                .maybeHandleOverflow(
-                                              maxChars: 70,
-                                              replacement: '…',
-                                            ),
-                                            textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelMedium
-                                                .override(
-                                                  fontFamily:
-                                                      'Plus Jakarta Sans',
-                                                  color: Color(0xFF57636C),
-                                                  fontSize: 14.0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
+                              child: StreamBuilder<CharitablesRecord>(
+                                stream: CharitablesRecord.getDocument(
+                                    widget.district!.reference),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        child: CircularProgressIndicator(
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
                                           ),
                                         ),
-                                        Column(
+                                      ),
+                                    );
+                                  }
+                                  final menuItemCharitablesRecord =
+                                      snapshot.data!;
+                                  return InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed(
+                                        'Person',
+                                        queryParameters: {
+                                          'personKnowledge': serializeParam(
+                                            listViewCharitablesRecord,
+                                            ParamType.Document,
+                                          ),
+                                        }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          'personKnowledge':
+                                              listViewCharitablesRecord,
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 3.0,
+                                            color: Color(0x411D2429),
+                                            offset: Offset(0.0, 1.0),
+                                          )
+                                        ],
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8.0, 8.0, 8.0, 8.0),
+                                        child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
                                           children: [
+                                            Text(
+                                              listViewCharitablesRecord
+                                                  .shopName,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineSmall
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        color:
+                                                            Color(0xFF0F1113),
+                                                        fontSize: 20.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                            ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 4.0, 0.0, 0.0),
-                                              child: Icon(
-                                                Icons.chevron_right_rounded,
-                                                color: Color(0xFF57636C),
-                                                size: 45.0,
+                                                  .fromSTEB(0.0, 4.0, 8.0, 0.0),
+                                              child: AutoSizeText(
+                                                listViewCharitablesRecord
+                                                    .nameSurname
+                                                    .maybeHandleOverflow(
+                                                  maxChars: 70,
+                                                  replacement: '…',
+                                                ),
+                                                textAlign: TextAlign.start,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Plus Jakarta Sans',
+                                                          color:
+                                                              Color(0xFF57636C),
+                                                          fontSize: 14.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
                                               ),
+                                            ),
+                                            Text(
+                                              listViewCharitablesRecord
+                                                  .district,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
+                                            ),
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 4.0, 0.0, 0.0),
+                                                  child: Icon(
+                                                    Icons.chevron_right_rounded,
+                                                    color: Color(0xFF57636C),
+                                                    size: 45.0,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
-                                ),
+                                  );
+                                },
                               ),
                             );
                           },

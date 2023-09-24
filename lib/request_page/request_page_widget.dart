@@ -29,7 +29,6 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
     _model.textController2 ??= TextEditingController();
     _model.textController3 ??= TextEditingController();
     _model.textController4 ??= TextEditingController();
-    _model.textController5 ??= TextEditingController();
   }
 
   @override
@@ -41,6 +40,8 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
@@ -64,11 +65,12 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
             },
           ),
           title: Text(
-            'Request Page',
+            'REQUEST PAGE',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
                   fontSize: 22.0,
+                  fontWeight: FontWeight.bold,
                 ),
           ),
           actions: [],
@@ -80,91 +82,6 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                        child: TextFormField(
-                          controller: _model.textController1,
-                          autofocus: true,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'isim soyisim',
-                            labelStyle:
-                                FlutterFlowTheme.of(context).labelMedium,
-                            hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            errorBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedErrorBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                          style: FlutterFlowTheme.of(context).bodyMedium,
-                          validator: _model.textController1Validator
-                              .asValidator(context),
-                        ),
-                      ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '',
-                      icon: Icon(
-                        Icons.search,
-                        size: 15.0,
-                      ),
-                      options: FFButtonOptions(
-                        height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).secondary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                ),
-                        elevation: 3.0,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               Container(
                 width: double.infinity,
                 height: 729.0,
@@ -183,7 +100,82 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
                         children: [
                           Text(
                             'SHOP NAME : ',
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 0.0, 8.0, 0.0),
+                              child: TextFormField(
+                                controller: _model.textController1,
+                                autofocus: true,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelText: 'Label here...',
+                                  labelStyle:
+                                      FlutterFlowTheme.of(context).labelMedium,
+                                  hintStyle:
+                                      FlutterFlowTheme.of(context).labelMedium,
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  errorBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                validator: _model.textController1Validator
+                                    .asValidator(context),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            'NAME & SURNAME :',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
                           Expanded(
                             child: Padding(
@@ -247,8 +239,13 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            'NAME & SURNAME :',
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            'ADDRESS : ',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
                           Expanded(
                             child: Padding(
@@ -312,8 +309,13 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            'ADDRESS : ',
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            'PHONE NUMBER : ',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
                           Expanded(
                             child: Padding(
@@ -362,71 +364,6 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyMedium,
                                 validator: _model.textController4Validator
-                                    .asValidator(context),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            'PHONE NUMBER : ',
-                            style: FlutterFlowTheme.of(context).bodyMedium,
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  8.0, 0.0, 8.0, 0.0),
-                              child: TextFormField(
-                                controller: _model.textController5,
-                                autofocus: true,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Label here...',
-                                  labelStyle:
-                                      FlutterFlowTheme.of(context).labelMedium,
-                                  hintStyle:
-                                      FlutterFlowTheme.of(context).labelMedium,
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  errorBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  focusedErrorBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context).error,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                ),
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                                validator: _model.textController5Validator
                                     .asValidator(context),
                               ),
                             ),
