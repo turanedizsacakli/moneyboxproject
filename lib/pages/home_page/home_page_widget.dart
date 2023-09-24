@@ -34,6 +34,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
@@ -81,7 +83,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   Expanded(
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(
-                          20.0, 20.0, 20.0, 20.0),
+                          10.0, 10.0, 10.0, 10.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           context.pushNamed('RequestPage');
@@ -114,8 +116,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Container(
-                      width: 100.0,
-                      height: 100.0,
+                      width: 80.0,
+                      height: 80.0,
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -135,8 +137,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                     child: Container(
-                      width: 100.0,
-                      height: 100.0,
+                      width: 80.0,
+                      height: 80.0,
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -152,7 +154,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   Expanded(
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(
-                          20.0, 20.0, 20.0, 20.0),
+                          10.0, 10.0, 10.0, 10.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           context.pushNamed('RequestPage');
@@ -189,7 +191,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   Expanded(
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(
-                          20.0, 20.0, 20.0, 20.0),
+                          10.0, 10.0, 10.0, 10.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           context.pushNamed('RegisterPage');
@@ -222,8 +224,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Container(
-                      width: 100.0,
-                      height: 100.0,
+                      width: 80.0,
+                      height: 80.0,
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -243,8 +245,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                     child: Container(
-                      width: 100.0,
-                      height: 100.0,
+                      width: 80.0,
+                      height: 80.0,
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -258,10 +260,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   Expanded(
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(
-                          20.0, 20.0, 20.0, 20.0),
+                          10.0, 10.0, 10.0, 10.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          context.pushNamed('PeopleList');
+                          context.pushNamed(
+                            'PeopleList',
+                            queryParameters: {
+                              'district': serializeParam(
+                                null,
+                                ParamType.Document,
+                              ),
+                            }.withoutNulls,
+                            extra: <String, dynamic>{
+                              'district': null,
+                            },
+                          );
                         },
                         text: 'LİST',
                         options: FFButtonOptions(
@@ -295,7 +308,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   Expanded(
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(
-                          20.0, 20.0, 20.0, 20.0),
+                          10.0, 10.0, 10.0, 10.0),
                       child: FFButtonWidget(
                         onPressed: () {
                           print('Button pressed ...');
@@ -328,8 +341,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Container(
-                      width: 100.0,
-                      height: 100.0,
+                      width: 80.0,
+                      height: 80.0,
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
