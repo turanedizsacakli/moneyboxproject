@@ -5,25 +5,25 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'request_page_model.dart';
-export 'request_page_model.dart';
+import 'red_line_page_copy_model.dart';
+export 'red_line_page_copy_model.dart';
 
-class RequestPageWidget extends StatefulWidget {
-  const RequestPageWidget({Key? key}) : super(key: key);
+class RedLinePageCopyWidget extends StatefulWidget {
+  const RedLinePageCopyWidget({Key? key}) : super(key: key);
 
   @override
-  _RequestPageWidgetState createState() => _RequestPageWidgetState();
+  _RedLinePageCopyWidgetState createState() => _RedLinePageCopyWidgetState();
 }
 
-class _RequestPageWidgetState extends State<RequestPageWidget> {
-  late RequestPageModel _model;
+class _RedLinePageCopyWidgetState extends State<RedLinePageCopyWidget> {
+  late RedLinePageCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => RequestPageModel());
+    _model = createModel(context, () => RedLinePageCopyModel());
 
     _model.textController1 ??= TextEditingController();
     _model.textController2 ??= TextEditingController();
@@ -50,7 +50,7 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondary,
+          backgroundColor: FlutterFlowTheme.of(context).error,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -67,7 +67,7 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
             },
           ),
           title: Text(
-            'REQUEST PAGE',
+            'REDLINE PAGE',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
@@ -1015,10 +1015,36 @@ class _RequestPageWidgetState extends State<RequestPageWidget> {
                       ),
                     ),
                     Container(
-                      width: 100.0,
-                      height: 100.0,
+                      width: 161.0,
+                      height: 56.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                      child: FFButtonWidget(
+                        onPressed: () {
+                          print('Button pressed ...');
+                        },
+                        text: 'Delete Person',
+                        options: FFButtonOptions(
+                          height: 6.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).error,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.white,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
                       ),
                     ),
                   ],
