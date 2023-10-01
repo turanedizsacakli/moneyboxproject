@@ -50,7 +50,9 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Color(0xFF5ACCBB),
@@ -752,10 +754,8 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                   ),
                 ),
               ),
-              StreamBuilder<List<CharitablesRecord>>(
-                stream: queryCharitablesRecord(
-                  singleRecord: true,
-                ),
+              FutureBuilder<int>(
+                future: queryCharitablesRecordCount(),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -771,18 +771,9 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                       ),
                     );
                   }
-                  List<CharitablesRecord> textCharitablesRecordList =
-                      snapshot.data!;
-                  // Return an empty Container when the item does not exist.
-                  if (snapshot.data!.isEmpty) {
-                    return Container();
-                  }
-                  final textCharitablesRecord =
-                      textCharitablesRecordList.isNotEmpty
-                          ? textCharitablesRecordList.first
-                          : null;
+                  int textCount = snapshot.data!;
                   return Text(
-                    'id',
+                    textCount.toString(),
                     style: FlutterFlowTheme.of(context).bodyMedium,
                   );
                 },
