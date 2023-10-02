@@ -84,8 +84,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          10.0, 10.0, 10.0, 10.0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           context.pushNamed('RequestPage');
@@ -93,7 +93,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         text: 'SEARCH',
                         options: FFButtonOptions(
                           width: double.infinity,
-                          height: 50.0,
+                          height: 80.0,
                           padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -155,8 +155,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   // update bizim günlük değişecek yer liste burada olacak...
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          10.0, 10.0, 10.0, 10.0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           context.pushNamed('RequestPage');
@@ -164,7 +164,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         text: 'UPDATE',
                         options: FFButtonOptions(
                           width: double.infinity,
-                          height: 50.0,
+                          height: 80.0,
                           padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -192,8 +192,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          10.0, 10.0, 10.0, 10.0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           context.pushNamed('RegisterPage');
@@ -201,7 +201,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         text: 'REGISTER',
                         options: FFButtonOptions(
                           width: double.infinity,
-                          height: 50.0,
+                          height: 80.0,
                           padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -261,8 +261,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          10.0, 10.0, 10.0, 10.0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           context.pushNamed(
@@ -281,7 +281,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         text: 'LİST',
                         options: FFButtonOptions(
                           width: double.infinity,
-                          height: 50.0,
+                          height: 80.0,
                           padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
@@ -309,8 +309,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          10.0, 10.0, 10.0, 10.0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () {
                           print('Button pressed ...');
@@ -318,7 +318,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         text: 'RED LİNE',
                         options: FFButtonOptions(
                           width: double.infinity,
-                          height: 50.0,
+                          height: 80.0,
                           padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
