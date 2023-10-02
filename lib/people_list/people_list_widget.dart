@@ -94,21 +94,8 @@ class _PeopleListWidgetState extends State<PeopleListWidget> {
                   controller: _model.districtsDropDownValueController ??=
                       FormFieldController<String>(null),
                   options: ['SEYHAN', 'YÜREĞİR', 'ÇUKUROVA', 'SARIÇAM'],
-                  onChanged: (val) async {
-                    setState(() => _model.districtsDropDownValue = val);
-                    context.pushNamed(
-                      'PeopleList',
-                      queryParameters: {
-                        'district': serializeParam(
-                          widget.district,
-                          ParamType.Document,
-                        ),
-                      }.withoutNulls,
-                      extra: <String, dynamic>{
-                        'district': widget.district,
-                      },
-                    );
-                  },
+                  onChanged: (val) =>
+                      setState(() => _model.districtsDropDownValue = val),
                   width: 166.0,
                   height: 50.0,
                   textStyle: FlutterFlowTheme.of(context).bodyMedium,
